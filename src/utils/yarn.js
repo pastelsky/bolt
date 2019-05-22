@@ -83,7 +83,7 @@ export async function upgrade(
   if (dependencies.length) {
     dependencies.forEach(dep => {
       if (dep.version) {
-        spawnArgs.push(`"${dep.name}@${dep.version}"`);
+        spawnArgs.push(`${dep.name}@${dep.version}`);
       } else {
         spawnArgs.push(dep.name);
       }
@@ -109,7 +109,7 @@ export async function run(
   let spawnArgs = ['run', '-s', script];
 
   if (args.length) {
-    spawnArgs = spawnArgs.concat('--', args);
+    spawnArgs = spawnArgs.concat(args);
   }
   await processes.spawn(localYarnRelative, spawnArgs, {
     cwd: pkg.dir,
